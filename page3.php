@@ -14,8 +14,8 @@
 		//eitus on !
 		if(!empty($POST["todays_adjective_input"])){
 			$todays_adjective_html = "<p>Tänane päev on " .$POST["todays_adjective_input"] .".</p>";
-			$todays_adjective = $_POST["todays_adjective_input"]
-		} else{
+			$todays_adjective = $_POST["todays_adjective_input"];
+		} else {
 			$todays_adjective_error = "Palun sisesta tänase kohta sobiv omadussõna!";
 		}
 	}
@@ -38,7 +38,7 @@
 			}//if in array
 		}//if isset lõppeb
 	}//foreach lõppes
-	 
+	
 	//var_dump($all_real_files);
 	//loen massiivi elemendid kokku
 	$file_count = count($photo_files);
