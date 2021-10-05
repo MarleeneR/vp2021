@@ -2,13 +2,29 @@
 	$author_name = "Marleene Ristjan";
 	$full_time_now = date("d.m.Y  H:i:s");
 	$weekday_now = date("N");
+	$hour_now = date("H");
 	$day_category = "lihtsalt päev";
 	//echo $weekday_now;
 	// võrdub == suurem/väiksem ... < > <= >=  pole võrdne (excelis <>) !=
 	if($weekday_now <= 5){
-		$day_category = "koolipäev";	
+		$day_category = "koolipäev";
+		if($hour_now < 6 or $hour_now >= 23){
+			$part_of_day = "uneaeg";
+		}
+		if($hour_now >= 6 and $hour_now < 18){
+			$part_of_day = "koolipäev";
+		}
+		if($hour_now >= 18 and $hour_now < 23){
+			$part_of_day = "puhkeaeg";
+		}
 	} else {
 		$day_category = "puhkepäev";
+		if($hour_now < 9){
+			$part_of_day = "uneaeg";
+		}
+		if($hour_now >= 21){
+			$part_of_day = "vaba aeg";
+		}
 	}
 	$weekday_names_et = ["esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "rede", "laupäev", "pühapäev"]; //list
 	//echo $weekday_names_et [2];

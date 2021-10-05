@@ -1,4 +1,5 @@
 <?php
+	
 	$author_name = "Marleene Ristjan";
 	
 	//kontrolllin, kas POST info jõuab kuhugi
@@ -14,7 +15,7 @@
 		//eitus on !
 		if(!empty($POST["todays_adjective_input"])){
 			$todays_adjective_html = "<p>Tänane päev on " .$POST["todays_adjective_input"] .".</p>";
-			$todays_adjective = $_POST["todays_adjective_input"]
+			$todays_adjective = $_POST["todays_adjective_input"];
 		} else{
 			$todays_adjective_error = "Palun sisesta tänase kohta sobiv omadussõna!";
 		}
@@ -45,7 +46,14 @@
 	//loosin juhusliku arvu (min peab olema 0 ja max count - 1)
 	$photo_num = mt_rand(0, $file_count - 1);
 	//<img src = "kataloog/fail" alt = "Tallinna Ülikool">
+	
+	if(isset($_POST["photo_select_submit"])){
+		$photo_num = $_POST["photo_select"];
+	}
+	
 	$photo_html =  '<img src ="' .$photo_dir .$photo_files[$photo_num] .'"alt="Tallinna Ülikool">';
+	
+	$photo_file_html = "\n <p> .$photo_files[$photo_num] .</p> \n";
 	
 	//tsükkel
 	//näiteks:
@@ -65,7 +73,11 @@
 	//select tsükkel ripmenüü jaoks
 	$photo_select_html = "\n" .'<select name="photo select">' ."\n";
 	for($i = 0;$i < $file_count;$i ++){
-		$photo_select_html .= '<option value="' .$i .'">' .$photo_files[$i] ."</options> \n";
+		$photo_select_html .= '<option value="' .$i .'"';
+		if($i == $photo_num){
+			$photo_select_html .= "selected";
+		}
+		$photo_select_html .= ">" .$photo_files[$i] ."</option> \n";
 	}
 	$photo_select_html .= "</select> \n";
 ?>
@@ -80,7 +92,7 @@
 	<h1><?php echo $author_name; ?>, veebiprogrammeerimine</h1>
 	<p>See leht on loodud õppetöö raames ja ei sisalda tõsiseltvõetavat sisu!</p>
 	<p>Õppetöö toimub <a href="http://www.tlu.ee/dt"> Tallinna Ülikooli Digitehnoloogiate instituudis</a>.</p>
-	<img src="tlu.jpg" alt="Tallinna Ülikooli Terra hoone" width="600">
+	
 	
 	<hr>
 	<form method="POST">
@@ -92,9 +104,13 @@
 	<hr>
 	<form method="POST">
 		<?php echo $photo_select_html; ?>
+		<input type="submit" name="photo_select_submit" value="Näita valitud fotot">
+	</form>
 	<hr>
 	<?php
 		echo $photo_html; 
+	  echo $photo_file_html;
+		echo "<hr> \n";
 		echo $photo_list_html;
 	?>
 	
