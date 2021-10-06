@@ -1,5 +1,5 @@
 <?php
-    require_once("../../config.php");
+    require_once("../../../config.php");
     require_once("fnc_general.php");
     require_once("fnc_user.php");
 
@@ -227,7 +227,7 @@
 	  <input name="user_data_submit" type="submit" value="Loo kasutaja"><span><?php echo $notice; ?></span>
 	</form>
 	<hr>
-    <p>Tagasi <a href="page3.php">avalehele</a></p>
+    <p>Tagasi <a href="page.php">avalehele</a></p>
 	
   </body>
 </html>
